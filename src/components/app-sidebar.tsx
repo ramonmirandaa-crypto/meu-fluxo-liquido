@@ -57,30 +57,6 @@ const navigationItems = [
   },
 ];
 
-const accountItems = [
-  {
-    title: "Contas Correntes",
-    href: "/accounts/checking",
-    icon: Wallet,
-    balance: "R$ 5.247,80",
-    bank: "Nubank"
-  },
-  {
-    title: "Poupança",
-    href: "/accounts/savings", 
-    icon: CreditCard,
-    balance: "R$ 2.890,45",
-    bank: "Itaú"
-  },
-  {
-    title: "Cartão de Crédito",
-    href: "/accounts/credit",
-    icon: CreditCard,
-    balance: "R$ 1.240,30",
-    bank: "C6 Bank"
-  },
-];
-
 const bottomItems = [
   {
     title: "Configurações",
@@ -127,39 +103,6 @@ export function AppSidebar() {
                     >
                       <item.icon className="h-4 w-4" />
                       {!isCollapsed && <span>{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        <SidebarSeparator />
-
-        <SidebarGroup>
-          <SidebarGroupLabel>Minhas Contas</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {accountItems.map((account) => (
-                <SidebarMenuItem key={account.href}>
-                  <SidebarMenuButton asChild>
-                    <NavLink 
-                      to={account.href}
-                      className={({ isActive }) => 
-                        isActive ? "bg-sidebar-accent text-sidebar-accent-foreground" : ""
-                      }
-                    >
-                      <account.icon className="h-4 w-4" />
-                      {!isCollapsed && (
-                        <div className="flex flex-col flex-1 min-w-0">
-                          <span className="text-sm font-medium truncate">{account.title}</span>
-                          <div className="flex items-center justify-between text-xs text-muted-foreground">
-                            <span className="truncate">{account.bank}</span>
-                            <span className="font-medium text-foreground ml-2">{account.balance}</span>
-                          </div>
-                        </div>
-                      )}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

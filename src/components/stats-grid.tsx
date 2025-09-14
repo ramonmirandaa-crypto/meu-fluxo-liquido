@@ -29,10 +29,10 @@ export function StatCard({
   };
 
   return (
-    <Card className="glass-card p-4 md:p-6 space-y-3 md:space-y-4">
+    <Card className="glass-card p-6 space-y-4">
       <div className="flex items-center justify-between">
-        <div className={`p-2 md:p-3 rounded-xl bg-gradient-glass ${colorClasses[color]}`}>
-          <Icon className="h-4 w-4 md:h-6 md:w-6" />
+        <div className={`p-3 rounded-xl bg-gradient-glass ${colorClasses[color]}`}>
+          <Icon className="h-6 w-6" />
         </div>
         {trend && (
           <div className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
@@ -51,8 +51,8 @@ export function StatCard({
       </div>
       
       <div className="space-y-1">
-        <p className="text-xs md:text-sm text-muted-foreground">{title}</p>
-        <p className="text-lg md:text-2xl font-bold break-all">{value}</p>
+        <p className="text-sm text-muted-foreground">{title}</p>
+        <p className="text-2xl font-bold">{value}</p>
         {subtitle && (
           <p className="text-xs text-muted-foreground">{subtitle}</p>
         )}
@@ -67,7 +67,7 @@ interface StatsGridProps {
 
 export function StatsGrid({ stats }: StatsGridProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {stats.map((stat, index) => (
         <StatCard key={index} {...stat} />
       ))}

@@ -164,37 +164,34 @@ const Index = () => {
         <AppSidebar />
         
         <SidebarInset className="flex-1">
-          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-4 md:px-6">
+          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-6">
             <SidebarTrigger />
             <div className="flex flex-1 items-center justify-between">
-              <div className="min-w-0">
-                <h1 className="text-xl md:text-2xl font-bold text-gradient-primary truncate">Dashboard</h1>
-                <p className="text-xs md:text-sm text-muted-foreground hidden sm:block">Visão geral das suas finanças</p>
+              <div>
+                <h1 className="text-2xl font-bold text-gradient-primary">Dashboard</h1>
+                <p className="text-sm text-muted-foreground">Visão geral das suas finanças</p>
               </div>
-              <div className="flex items-center gap-2 md:gap-4">
-                <div className="hidden sm:block">
-                  <CurrencySelector 
-                    value={selectedCurrency} 
-                    onValueChange={setSelectedCurrency}
-                  />
-                </div>
-                <Button className="gap-1 md:gap-2 text-xs md:text-sm px-2 md:px-4">
-                  <Plus className="h-3 w-3 md:h-4 md:w-4" />
-                  <span className="hidden sm:inline">Nova Transação</span>
-                  <span className="sm:hidden">Nova</span>
+              <div className="flex items-center gap-4">
+                <CurrencySelector 
+                  value={selectedCurrency} 
+                  onValueChange={setSelectedCurrency}
+                />
+                <Button className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Nova Transação
                 </Button>
               </div>
             </div>
           </header>
 
-          <main className="flex-1 space-y-4 md:space-y-8 p-4 md:p-6">
+          <main className="flex-1 space-y-8 p-6">
             {/* Stats Overview */}
             <StatsGrid stats={statsData} />
 
             {/* Navigation Grid */}
-            <div className="space-y-4 md:space-y-6">
-              <h2 className="text-lg md:text-xl font-semibold">Acesso Rápido</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold">Acesso Rápido</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {navigationCards.map((card, index) => (
                   <NavigationCard
                     key={index}
@@ -206,9 +203,9 @@ const Index = () => {
             </div>
 
             {/* Quick Actions Grid */}
-            <div className="space-y-4 md:space-y-6">
-              <h2 className="text-lg md:text-xl font-semibold">Ações Rápidas</h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4">
+            <div className="space-y-6">
+              <h2 className="text-xl font-semibold">Ações Rápidas</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                 {quickActions.map((action, index) => (
                   <QuickActionCard
                     key={index}
@@ -220,17 +217,14 @@ const Index = () => {
             </div>
 
             {/* Recent Transactions */}
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg md:text-xl font-semibold">Transações Recentes</h2>
-                <Button variant="outline" size="sm" className="text-xs md:text-sm">
-                  <span className="hidden sm:inline">Ver Todas</span>
-                  <span className="sm:hidden">Ver +</span>
-                </Button>
+                <h2 className="text-xl font-semibold">Transações Recentes</h2>
+                <Button variant="outline" size="sm">Ver Todas</Button>
               </div>
               
               <Card className="glass-card">
-                <div className="p-4 md:p-6 space-y-3 md:space-y-4">
+                <div className="p-6 space-y-4">
                   {recentTransactions.map((transaction) => (
                     <TransactionItem
                       key={transaction.id}
@@ -242,9 +236,9 @@ const Index = () => {
             </div>
 
             {/* Additional Info Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              <Card className="glass-card p-4 md:p-6">
-                <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Próximos Vencimentos</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="glass-card p-6">
+                <h3 className="text-lg font-semibold mb-4">Próximos Vencimentos</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm">Cartão Nubank</span>
@@ -261,8 +255,8 @@ const Index = () => {
                 </div>
               </Card>
 
-              <Card className="glass-card p-4 md:p-6">
-                <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Objetivos em Andamento</h3>
+              <Card className="glass-card p-6">
+                <h3 className="text-lg font-semibold mb-4">Objetivos em Andamento</h3>
                 <div className="space-y-4">
                   <div>
                     <div className="flex justify-between items-center mb-2">
@@ -285,8 +279,8 @@ const Index = () => {
                 </div>
               </Card>
 
-              <Card className="glass-card p-4 md:p-6">
-                <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Carteira Investimentos</h3>
+              <Card className="glass-card p-6">
+                <h3 className="text-lg font-semibold mb-4">Carteira Investimentos</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm">Renda Fixa</span>
