@@ -6,7 +6,6 @@ import { TransactionItem } from "@/components/transaction-item";
 import { CurrencySelector } from "@/components/ui/currency-selector";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { DynamicLogo } from "@/components/dynamic-logo";
 import { 
   SidebarProvider, 
   SidebarInset, 
@@ -168,19 +167,16 @@ const Index = () => {
           <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-6">
             <SidebarTrigger />
             <div className="flex flex-1 items-center justify-between">
-              <div className="flex items-center gap-3">
-                <DynamicLogo size="sm" />
-                <div>
-                  <h1 className="text-2xl font-bold" style={{ color: `hsl(var(--primary))` }}>Dashboard</h1>
-                  <p className="text-sm text-muted-foreground">Visão geral das suas finanças</p>
-                </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gradient-primary">Dashboard</h1>
+                <p className="text-sm text-muted-foreground">Visão geral das suas finanças</p>
               </div>
               <div className="flex items-center gap-4">
                 <CurrencySelector 
                   value={selectedCurrency} 
                   onValueChange={setSelectedCurrency}
                 />
-                <Button className="gap-2" style={{ backgroundColor: `hsl(var(--primary))`, color: 'white' }}>
+                <Button className="gap-2">
                   <Plus className="h-4 w-4" />
                   Nova Transação
                 </Button>

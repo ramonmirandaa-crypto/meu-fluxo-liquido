@@ -27,19 +27,11 @@
     --popover: 210 20% 98%;
     --popover-foreground: 215 25% 15%;
 
-    /* Dynamic Primary Brand - Changes per page */
+    /* Primary Brand - Emerald accent */
     --primary: 170 75% 45%;
     --primary-foreground: 210 20% 98%;
     --primary-muted: 170 60% 35%;
     --primary-glow: 170 75% 55%;
-    
-    /* Page-specific color variations */
-    --color-dashboard: 170 75% 45%;      /* Green */
-    --color-accounts: 217 91% 59%;       /* Blue */
-    --color-transactions: 25 95% 53%;    /* Orange */
-    --color-investments: 270 65% 50%;    /* Purple */
-    --color-goals: 170 60% 65%;          /* Light Green */
-    --color-analytics: 170 60% 65%;      /* Light Green */
 
     /* Secondary Actions - Cool blue */
     --secondary: 210 15% 90%;

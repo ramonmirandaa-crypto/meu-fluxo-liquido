@@ -20,9 +20,9 @@ import {
   Target, 
   PieChart,
   Settings,
-  HelpCircle
+  HelpCircle,
+  Wallet
 } from "lucide-react";
-import { DynamicLogo } from "@/components/dynamic-logo";
 
 const navigationItems = [
   {
@@ -78,9 +78,11 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-3">
-          <DynamicLogo size="md" />
+          <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shrink-0">
+            <Wallet className="h-4 w-4 text-primary-foreground" />
+          </div>
           {!isCollapsed && (
-            <h1 className="text-lg font-bold text-gradient-primary">.tO Finance</h1>
+            <h1 className="text-lg font-bold text-gradient-primary">FinanceApp</h1>
           )}
         </div>
       </SidebarHeader>
