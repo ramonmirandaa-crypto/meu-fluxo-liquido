@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
+import { TransactionDialog } from "@/components/dialogs/transaction-dialog";
 import { NavigationCard, QuickActionCard } from "@/components/navigation-cards";
 import { StatsGrid } from "@/components/stats-grid";
 import { TransactionItem } from "@/components/transaction-item";
@@ -34,6 +35,7 @@ import {
 
 const Index = () => {
   const [selectedCurrency, setSelectedCurrency] = useState("BRL");
+  const [isTransactionDialogOpen, setIsTransactionDialogOpen] = useState(false);
 
   // Stats data
   const statsData = [
@@ -165,30 +167,38 @@ const Index = () => {
         <AppSidebar />
         
         <SidebarInset className="flex-1">
-          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-6">
+          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-4 md:px-6">
             <SidebarTrigger />
             <div className="flex flex-1 items-center justify-between">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 md:gap-3">
                 <DynamicLogo size="sm" />
                 <div>
-                  <h1 className="text-2xl font-bold" style={{ color: `hsl(var(--primary))` }}>Dashboard</h1>
-                  <p className="text-sm text-muted-foreground">Visão geral das suas finanças</p>
+                  <h1 className="text-lg md:text-2xl font-bold" style={{ color: `hsl(var(--primary))` }}>Dashboard</h1>
+                  <p className="text-sm text-muted-foreground hidden sm:block">Visão geral das suas finanças</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
-                <CurrencySelector 
-                  value={selectedCurrency} 
-                  onValueChange={setSelectedCurrency}
-                />
-                <Button className="gap-2" style={{ backgroundColor: `hsl(var(--primary))`, color: 'white' }}>
+              <div className="flex items-center gap-2 md:gap-4">
+                <div className="hidden md:block">
+                  <CurrencySelector 
+                    value={selectedCurrency} 
+                    onValueChange={setSelectedCurrency}
+                  />
+                </div>
+                <Button 
+                  className="gap-2" 
+                  style={{ backgroundColor: `hsl(var(--primary))`, color: 'white' }}
+                  onClick={() => setIsTransactionDialogOpen(true)}
+                  size="sm"
+                >
                   <Plus className="h-4 w-4" />
-                  Nova Transação
+                  <span className="hidden sm:inline">Nova Transação</span>
+                  <span className="sm:hidden">Nova</span>
                 </Button>
               </div>
             </div>
           </header>
 
-          <main className="flex-1 space-y-8 p-6">
+          <main className="flex-1 space-y-6 md:space-y-8 p-4 md:p-6">
             {/* Stats Overview */}
             <StatsGrid stats={statsData} />
 
@@ -304,6 +314,11 @@ const Index = () => {
           </main>
         </SidebarInset>
       </div>
+      
+      <TransactionDialog 
+        open={isTransactionDialogOpen} 
+        onOpenChange={setIsTransactionDialogOpen} 
+      />
     </SidebarProvider>
   );
 };

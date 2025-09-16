@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { DynamicLogo } from "@/components/dynamic-logo";
+import { TransactionDialog } from "@/components/dialogs/transaction-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
@@ -10,20 +12,22 @@ import {
 import { Receipt, Plus, ArrowUpRight, ArrowDownLeft, Filter } from "lucide-react";
 
 const TransactionsPage = () => {
+  const [isTransactionDialogOpen, setIsTransactionDialogOpen] = useState(false);
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-background">
         <AppSidebar />
         
         <SidebarInset className="flex-1">
-          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-6">
+          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-4 md:px-6">
             <SidebarTrigger />
             <div className="flex flex-1 items-center justify-between">
               <div className="flex items-center gap-3">
                 <DynamicLogo size="sm" />
                 <div>
-                  <h1 className="text-2xl font-bold" style={{ color: `hsl(var(--primary))` }}>Transações</h1>
-                  <p className="text-sm text-muted-foreground">Histórico de receitas e despesas</p>
+                  <h1 className="text-lg md:text-2xl font-bold" style={{ color: `hsl(var(--primary))` }}>Transações</h1>
+                  <p className="text-sm text-muted-foreground hidden sm:block">Histórico de receitas e despesas</p>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -31,7 +35,11 @@ const TransactionsPage = () => {
                   <Filter className="h-4 w-4" />
                   Filtros
                 </Button>
-                <Button className="gap-2" style={{ backgroundColor: `hsl(var(--primary))`, color: 'white' }}>
+                <Button 
+                  className="gap-2" 
+                  style={{ backgroundColor: `hsl(var(--primary))`, color: 'white' }}
+                  onClick={() => setIsTransactionDialogOpen(true)}
+                >
                   <Plus className="h-4 w-4" />
                   Nova Transação
                 </Button>
@@ -39,7 +47,7 @@ const TransactionsPage = () => {
             </div>
           </header>
 
-          <main className="flex-1 space-y-8 p-6">
+          <main className="flex-1 space-y-6 md:space-y-8 p-4 md:p-6">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <Card className="glass-card p-6">
                 <div className="flex items-center gap-4 mb-4">
@@ -103,6 +111,11 @@ const TransactionsPage = () => {
           </main>
         </SidebarInset>
       </div>
+      
+      <TransactionDialog 
+        open={isTransactionDialogOpen} 
+        onOpenChange={setIsTransactionDialogOpen} 
+      />
     </SidebarProvider>
   );
 };

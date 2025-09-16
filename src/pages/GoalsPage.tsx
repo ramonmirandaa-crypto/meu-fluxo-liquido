@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { DynamicLogo } from "@/components/dynamic-logo";
+import { GoalDialog } from "@/components/dialogs/goal-dialog";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { 
@@ -10,30 +12,36 @@ import {
 import { Target, Plus, Calendar, Trophy } from "lucide-react";
 
 const GoalsPage = () => {
+  const [isGoalDialogOpen, setIsGoalDialogOpen] = useState(false);
+
   return (
     <SidebarProvider>
       <div className="flex min-h-screen w-full bg-background">
         <AppSidebar />
         
         <SidebarInset className="flex-1">
-          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-6">
+          <header className="flex h-16 shrink-0 items-center gap-4 border-b border-border/50 px-4 md:px-6">
             <SidebarTrigger />
             <div className="flex flex-1 items-center justify-between">
               <div className="flex items-center gap-3">
                 <DynamicLogo size="sm" />
                 <div>
-                  <h1 className="text-2xl font-bold" style={{ color: `hsl(var(--primary))` }}>Objetivos</h1>
-                  <p className="text-sm text-muted-foreground">Defina e monitore suas metas financeiras</p>
+                  <h1 className="text-lg md:text-2xl font-bold" style={{ color: `hsl(var(--primary))` }}>Objetivos</h1>
+                  <p className="text-sm text-muted-foreground hidden sm:block">Defina e monitore suas metas financeiras</p>
                 </div>
               </div>
-              <Button className="gap-2" style={{ backgroundColor: `hsl(var(--primary))`, color: 'white' }}>
+              <Button 
+                className="gap-2" 
+                style={{ backgroundColor: `hsl(var(--primary))`, color: 'white' }}
+                onClick={() => setIsGoalDialogOpen(true)}
+              >
                 <Plus className="h-4 w-4" />
                 Novo Objetivo
               </Button>
             </div>
           </header>
 
-          <main className="flex-1 space-y-8 p-6">
+          <main className="flex-1 space-y-6 md:space-y-8 p-4 md:p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="glass-card p-6">
                 <div className="flex items-center gap-4 mb-4">
@@ -122,6 +130,11 @@ const GoalsPage = () => {
           </main>
         </SidebarInset>
       </div>
+      
+      <GoalDialog 
+        open={isGoalDialogOpen} 
+        onOpenChange={setIsGoalDialogOpen} 
+      />
     </SidebarProvider>
   );
 };
